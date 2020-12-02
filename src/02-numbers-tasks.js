@@ -200,9 +200,10 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
-}
+const isPrime = (num) => {
+  for (let i = 2; i < num; i += 1) if (num % i === 0) return false;
+  return num > 1;
+};
 
 /**
  * Tries to convert value to number and returns it if conversion was successfull;
@@ -219,8 +220,8 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return parseFloat(value) || value instanceof Number ? parseFloat(value) : def;
 }
 
 module.exports = {
