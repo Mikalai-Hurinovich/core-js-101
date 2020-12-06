@@ -521,7 +521,7 @@ function distinct(arr) {
  * @return {Map}
  *
  * @example
- *   group([
+ *
  *      { country: 'Belarus', city: 'Brest' },
  *      { country: 'Russia', city: 'Omsk' },
  *      { country: 'Russia', city: 'Samara' },
@@ -574,8 +574,8 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, i) {
+  return i.reduce((previous, current) => previous[current], arr);
 }
 
 
@@ -597,8 +597,17 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const middle = Math.floor(arr.length / 2);
+  const a = arr.slice(-middle);
+  const b = arr.slice(0, middle);
+  if (arr.length > 0 && arr.length <= 3) {
+    return arr.reverse();
+  }
+  if (arr.length % 2 === 0) {
+    return a.concat(b);
+  }
+  return (a.concat(arr[middle])).concat(b);
 }
 
 
